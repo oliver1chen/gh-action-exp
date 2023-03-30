@@ -29,7 +29,7 @@ jobs:
           repository_name: "gh-action-exp-2"
           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
           git_user_name: "Github-Actions-Bot"
-          git_user_email: "<>"
+#           git_user_email: "<>"
 #           access_token: ${{ secrets.ACCESS_TOKEN}}
 
       - name: Pushes gh-action-exp-2
