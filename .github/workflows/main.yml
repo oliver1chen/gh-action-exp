@@ -15,6 +15,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           git clone https://github.com/oliver1chen/gh-action-exp-2.git
+          cd gh-action-exp-2
           git checkout -b 'test-1'
           git push origin test-1
           
