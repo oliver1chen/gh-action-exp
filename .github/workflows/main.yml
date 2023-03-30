@@ -14,33 +14,37 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-
-      - name: Generate UUID
-        id: generate-uuid
-        uses: filipstefansson/uuid-action@v1
-        
-      - name: Check UUID
-        run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
+          git clone https://github.com/oliver1chen/gh-action-exp-2.git
+          git checkout -b 'test-1'
+          git push origin test-1
           
-      - name: Create new branch in gh-action-exp-2
-        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
-        with:
-          repository_owner: "oliver1chen"
-          repository_name: "gh-action-exp-2"
-          new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           git_user_name: "oliver1chen"
-#           git_user_email: "oliver1chen@github.com"
-#           access_token: ${{ secrets.ACCESS_TOKEN}}
 
-      - name: Pushes gh-action-exp-2
-        uses: cpina/github-action-push-to-another-repository@main
-#         env:
-#           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-#           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'src/components'
-          destination-github-username: 'oliver1chen'
-          destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-          target-directory: 'src/components/gh-action-exp'
+#       - name: Generate UUID
+#         id: generate-uuid
+#         uses: filipstefansson/uuid-action@v1
+        
+#       - name: Check UUID
+#         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
+          
+#       - name: Create new branch in gh-action-exp-2
+#         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+#         with:
+#           repository_owner: "oliver1chen"
+#           repository_name: "gh-action-exp-2"
+#           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+# #           git_user_name: "oliver1chen"
+# #           git_user_email: "oliver1chen@github.com"
+# #           access_token: ${{ secrets.ACCESS_TOKEN}}
+
+#       - name: Pushes gh-action-exp-2
+#         uses: cpina/github-action-push-to-another-repository@main
+# #         env:
+# #           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+# #           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+#         with:
+#           source-directory: 'src/components'
+#           destination-github-username: 'oliver1chen'
+#           destination-repository-name: 'gh-action-exp-2'
+#           target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           target-directory: 'src/components/gh-action-exp'
 
