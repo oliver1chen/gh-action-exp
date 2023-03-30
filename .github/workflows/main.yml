@@ -2,20 +2,18 @@ on:
   push:
     branches:
     - master
-    paths:
-      - 'src/components/**'
     
 jobs:
   copy:
     name: 'copy to '
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Configure committer
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+#       - uses: actions/checkout@v3
+
+#       - name: Configure committer
+#         run: |
+#           git config user.name "GitHub Actions Bot"
+#           git config user.email "<>"
 
       - name: Generate UUID
         id: generate-uuid
