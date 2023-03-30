@@ -5,20 +5,10 @@ on:
     
 jobs:
   copy:
-    name: 'copy to '
+    name: 'copy to gh-action-exp-2'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-#       - name: Configure committer
-#         run: |
-#           git config user.name "GitHub Actions Bot"
-#           git config user.email "<>"
-#           cd ../
-#           git clone https://github.com/oliver1chen/gh-action-exp-2.git
-#           cd gh-action-exp-2
-#           git checkout -b 'test-1'
-#           git push origin test-1
 
       - name: Generate UUID
         id: generate-uuid
@@ -30,10 +20,19 @@ jobs:
 #       - name: Create new branch in gh-action-exp-2
 #         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
 #         with:
-#           repository_owner: "oliver1chen"
-#           repository_name: "gh-action-exp-2"
+#           repository_owner: 'oliver1chen'
+#           repository_name: 'gh-action-exp-2'
 #           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
 #           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+          
+      - name: Create new branch in gh-action-exp-2
+        uses: actions/checkout@v3
+        with:
+          repository: 'oliver1chen/gh-action-exp-2'
+          ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+      
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
@@ -43,6 +42,6 @@ jobs:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'test'
+          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
           target-directory: 'src/components/gh-action-exp'
 
