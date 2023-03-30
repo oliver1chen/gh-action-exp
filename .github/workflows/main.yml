@@ -7,9 +7,14 @@ on:
     
 jobs:
   copy:
-    name: 'bump version'
+    name: 'copy to '
     runs-on: ubuntu-latest
     steps:
+      - name: Configure committer
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: Generate UUID
         id: generate-uuid
         uses: filipstefansson/uuid-action@v1
@@ -20,8 +25,8 @@ jobs:
       - name: Create new branch in gh-action-exp-2
         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
         with:
-          repository_owner: 'oliver1chen'
-          repository_name: 'gh-action-exp-2'
+          repository_owner: oliver1chen
+          repository_name: gh-action-exp-2
           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
 #           access_token: ${{ secrets.ACCESS_TOKEN}}
 
