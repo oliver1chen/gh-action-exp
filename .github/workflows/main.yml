@@ -26,25 +26,25 @@ jobs:
 # #           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
 #           access_token: ${{ secrets.ACCESS_TOKEN }}
           
-      - name: Create new branch in gh-action-exp-2
-        uses: actions/checkout@v3
-        with:
-          repository: 'oliver1chen/gh-action-exp-2'
-          ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-          ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+#       - name: Create new branch in gh-action-exp-2
+#         uses: actions/checkout@v3
+#         with:
+#           repository: 'oliver1chen/gh-action-exp-2'
+#           ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+# #           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
           
       
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-#           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+#           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
         with:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          target-branch: 'test'
           target-directory: 'src/components/gh-action-exp'
 
