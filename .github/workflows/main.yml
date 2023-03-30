@@ -10,15 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Configure committer
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          cd ../
-          git clone https://github.com/oliver1chen/gh-action-exp-2.git
-          cd gh-action-exp-2
-          git checkout -b 'test-1'
-          git push origin test-1
+#       - name: Configure committer
+#         run: |
+#           git config user.name "GitHub Actions Bot"
+#           git config user.email "<>"
+#           cd ../
+#           git clone https://github.com/oliver1chen/gh-action-exp-2.git
+#           cd gh-action-exp-2
+#           git checkout -b 'test-1'
+#           git push origin test-1
           
 
 #       - name: Generate UUID
@@ -38,15 +38,15 @@ jobs:
 # #           git_user_email: "oliver1chen@github.com"
 # #           access_token: ${{ secrets.ACCESS_TOKEN}}
 
-#       - name: Pushes gh-action-exp-2
-#         uses: cpina/github-action-push-to-another-repository@main
-# #         env:
-# #           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-# #           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-#         with:
-#           source-directory: 'src/components'
-#           destination-github-username: 'oliver1chen'
-#           destination-repository-name: 'gh-action-exp-2'
-#           target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           target-directory: 'src/components/gh-action-exp'
+      - name: Pushes gh-action-exp-2
+        uses: cpina/github-action-push-to-another-repository@main
+#         env:
+#           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+#           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'src/components'
+          destination-github-username: 'oliver1chen'
+          destination-repository-name: 'gh-action-exp-2'
+          target-branch: 'test'
+          target-directory: 'src/components/gh-action-exp'
 
