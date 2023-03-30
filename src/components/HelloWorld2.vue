@@ -6,7 +6,6 @@ defineProps({
 });
 
 const count = ref(0);
-const count2 = ref(0);
 </script>
 
 <template>
