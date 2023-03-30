@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+    - master
+    paths:
+      - 'src/components/**'
+    
+jobs:
+  copy:
+    name: 'bump version'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate UUID
+        id: generate-uuid
+        uses: filipstefansson/uuid-action@v1
+        
+      - name: Check UUID
+        run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
+          
+      - name: Create new branch in gh-action-exp-2
+        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+        with:
+          repository_owner: 'oliver1chen'
+          repository_name: 'gh-action-exp-2'
+          new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           access_token: ${{ secrets.ACCESS_TOKEN}}
+
+      - name: Pushes gh-action-exp-2
+        uses: cpina/github-action-push-to-another-repository@main
+#         env:
+#           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+#           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'src/components'
+          destination-github-username: 'oliver1chen'
+          destination-repository-name: 'gh-action-exp-2'
+          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          target-directory: 'src/components/gh-action-exp'
