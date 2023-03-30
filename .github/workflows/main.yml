@@ -26,13 +26,14 @@ jobs:
 # #           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
 #           access_token: ${{ secrets.ACCESS_TOKEN }}
           
-#       - name: Create new branch in gh-action-exp-2
-#         uses: actions/checkout@v3
-#         with:
-#           repository: 'oliver1chen/gh-action-exp-2'
-#           ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-# #           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+      - name: Create new branch in gh-action-exp-2
+        uses: actions/checkout@v3
+        with:
+          repository: 'oliver1chen/gh-action-exp-2'
+          ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           
       
 
