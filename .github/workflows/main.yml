@@ -27,13 +27,13 @@ jobs:
       - name: Check UUID
         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
           
-      - name: Create new branch in gh-action-exp-2
-        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
-        with:
-          repository_owner: "oliver1chen"
-          repository_name: "gh-action-exp-2"
-          new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-          ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+#       - name: Create new branch in gh-action-exp-2
+#         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+#         with:
+#           repository_owner: "oliver1chen"
+#           repository_name: "gh-action-exp-2"
+#           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
@@ -43,6 +43,6 @@ jobs:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+          target-branch: 'test'
           target-directory: 'src/components/gh-action-exp'
 
