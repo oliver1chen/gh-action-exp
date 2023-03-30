@@ -8,12 +8,12 @@ jobs:
     name: 'copy to '
     runs-on: ubuntu-latest
     steps:
-#       - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-#       - name: Configure committer
-#         run: |
-#           git config user.name "GitHub Actions Bot"
-#           git config user.email "<>"
+      - name: Configure committer
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
 
       - name: Generate UUID
         id: generate-uuid
@@ -43,3 +43,4 @@ jobs:
           destination-repository-name: 'gh-action-exp-2'
           target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
           target-directory: 'src/components/gh-action-exp'
+
