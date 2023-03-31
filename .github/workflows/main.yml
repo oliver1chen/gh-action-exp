@@ -17,23 +17,23 @@ jobs:
       - name: Check UUID
         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
           
-#       - name: Create new branch in gh-action-exp-2
-#         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
-#         with:
-#           repository_owner: 'oliver1chen'
-#           repository_name: 'gh-action-exp-2'
-#           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-# #           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
-#           access_token: ${{ secrets.ACCESS_TOKEN }}
-          
       - name: Create new branch in gh-action-exp-2
-        uses: actions/checkout@v3
+        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
         with:
-          repository: 'oliver1chen/gh-action-exp-2'
-          ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
-          token: ${{ secrets.ACCESS_TOKEN }}
+          repository_owner: 'oliver1chen'
+          repository_name: 'gh-action-exp-2'
+          new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+          access_token: ${{ secrets.ACCESS_TOKEN }}
+          
+#       - name: Create new branch in gh-action-exp-2
+#         uses: actions/checkout@v3
+#         with:
+#           repository: 'oliver1chen/gh-action-exp-2'
+#           ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+# #           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+# #           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+#           token: ${{ secrets.ACCESS_TOKEN }}
           
       
 
