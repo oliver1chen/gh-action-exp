@@ -31,7 +31,7 @@ jobs:
         with:
           repository: 'oliver1chen/gh-action-exp-2'
           ref: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-          path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           path: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
 #           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
           token: ${{ secrets.ACCESS_TOKEN }}
           
