@@ -57,7 +57,7 @@ jobs:
 #         run: echo "${{ steps.get_sha.outputs.sha }}" > output.json
             
       - name: chech get sha output
-      - run: |
+        run: |
             echo "latest release: ${{ steps.get_sha.outputs.sha }}"
             
       - name: Create new branch in gh-action-exp-2
