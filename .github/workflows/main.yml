@@ -40,7 +40,7 @@ jobs:
             curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $${{ secrets.ACCESS_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/oliver1chen/gh-action-exp-2/git/refs \
             -d '{"ref":"refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}","sha":"${{ github.sha }}" }'
@@ -67,6 +67,6 @@ jobs:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'test'
+          target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
           target-directory: 'src/components/gh-action-exp'
 
