@@ -36,7 +36,7 @@ jobs:
 #           token: ${{ secrets.ACCESS_TOKEN }}
           
       - name: Create new branch in gh-action-exp-2
-        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+        uses: octokit/request-action@v2.x
         id: create_branch
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
