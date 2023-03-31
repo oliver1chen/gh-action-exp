@@ -41,9 +41,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          route: POST /repos/oliver1chen/gh-action-exp-2/git/refs
+          route: POST /repos/{owner}/{repo}/git/refs
+          owner: oliver1chen
+          repo: gh-action-exp-2
           ref: "refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}"
           sha: ${{ github.sha }}
+          mediaType: | # The | is significant!
+            format: raw
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
