@@ -36,18 +36,26 @@ jobs:
 #           token: ${{ secrets.ACCESS_TOKEN }}
           
       - name: Create new branch in gh-action-exp-2
-        uses: octokit/request-action@v2.x
-        id: create_branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          route: POST /repos/{owner}/{repo}/git/refs
-          owner: oliver1chen
-          repo: gh-action-exp-2
-          ref: "refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}"
-          sha: ${{ github.sha }}
-          mediaType: | # The | is significant!
-            format: raw
+        run: curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $${{ secrets.ACCESS_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/oliver1chen/gh-action-exp-2/git/refs \
+            -d '{"ref":"refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}","sha":"${{ github.sha }}" }'
+
+#         uses: octokit/request-action@v2.x
+#         id: create_branch
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#         with:
+#           route: POST /repos/{owner}/{repo}/git/refs
+#           owner: oliver1chen
+#           repo: gh-action-exp-2
+#           ref: "refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}"
+#           sha: ${{ github.sha }}
+#           mediaType: | # The | is significant!
+#             format: raw
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
