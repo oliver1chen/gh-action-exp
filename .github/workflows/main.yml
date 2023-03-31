@@ -52,7 +52,7 @@ jobs:
           owner: oliver1chen
           repo: gh-action-exp-2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
             
       - run: "echo latest release: '${{ steps.get_sha.outputs.data }}'"
             
