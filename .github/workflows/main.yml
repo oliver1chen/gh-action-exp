@@ -36,7 +36,8 @@ jobs:
 #           token: ${{ secrets.ACCESS_TOKEN }}
           
       - name: Create new branch in gh-action-exp-2
-        run: curl -L \
+        run: |
+            curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $${{ secrets.ACCESS_TOKEN }}" \
