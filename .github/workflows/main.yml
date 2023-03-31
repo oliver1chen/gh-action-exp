@@ -17,14 +17,14 @@ jobs:
       - name: Check UUID
         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
           
-      - name: Create new branch in gh-action-exp-2
-        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
-        with:
-          repository_owner: 'oliver1chen'
-          repository_name: 'gh-action-exp-2'
-          new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
-#           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
-          access_token: ${{ secrets.ACCESS_TOKEN }}
+#       - name: Create new branch in gh-action-exp-2
+#         uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+#         with:
+#           repository_owner: 'oliver1chen'
+#           repository_name: 'gh-action-exp-2'
+#           new_branch_name: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+# #           ssh_deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+#           access_token: ${{ secrets.ACCESS_TOKEN }}
           
 #       - name: Create new branch in gh-action-exp-2
 #         uses: actions/checkout@v3
@@ -35,7 +35,18 @@ jobs:
 # #           ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
 #           token: ${{ secrets.ACCESS_TOKEN }}
           
-      
+      - name: Create new branch in gh-action-exp-2
+        uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
+        id: create_branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          route: POST /repos/{owner}/{repo}/git/refs
+          owner: oliver1chen
+          repo: gh-action-exp-2
+          name: "Test check run"
+          ref: "refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}"
+          sha: ${{ github.sha }}
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
