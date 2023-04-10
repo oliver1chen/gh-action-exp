@@ -10,10 +10,11 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Get current branch name
-        run: echo "Current branch is ${{ GITHUB_REF#refs/heads/ }}"
+        run: echo "Current branch is ${GITHUB_BASE_REF}"
+
 
       - name: Set current branch name
-        run: echo "CURRENT_BRANCH=${{ GITHUB_REF#refs/heads/ }}" >> $GITHUB_ENV
+        run: echo "CURRENT_BRANCH=${GITHUB_BASE_REF}" >> $GITHUB_ENV
 
       - name: get sha of gh-action-exp-2
         id: get_sha
