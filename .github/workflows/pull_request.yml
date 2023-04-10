@@ -2,7 +2,7 @@ on:
   pull_request:
     types: [opened]
 env:
-  CURRENT_BRANCH: ${GITHUB_HEAD_REF}
+  CURRENT_BRANCH: "${GITHUB_HEAD_REF}"
     
 jobs:
   copy:
