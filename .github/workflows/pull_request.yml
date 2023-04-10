@@ -14,7 +14,7 @@ jobs:
 
 
       - name: Set current branch name
-        run: echo "CURRENT_BRANCH=${GITHUB_BASE_REF}" >> $GITHUB_ENV
+        run: eecho "CURRENT_BRANCH=$(echo ${GITHUB_BASE_REF})" >>$GITHUB_OUTPUT
 
       - name: get sha of gh-action-exp-2
         id: get_sha
