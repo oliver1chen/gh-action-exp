@@ -8,9 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Get current branch name
+        run: echo "Current branch is ${{ GITHUB_REF#refs/heads/ }}"
 
       - name: Set current branch name
-        run: echo "CURRENT_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        run: echo "CURRENT_BRANCH=${{ GITHUB_REF#refs/heads/ }}" >> $GITHUB_ENV
 
       - name: get sha of gh-action-exp-2
         id: get_sha
