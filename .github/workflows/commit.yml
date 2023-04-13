@@ -6,7 +6,7 @@ on:
       - 'src/components/**'
       
 env:
-  CURRENT_BRANCH: "${{ basename(github.ref) }}"
+  CURRENT_BRANCH: "$(basename ${{ github.ref }})"
     
 jobs:
   check:
