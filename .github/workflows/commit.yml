@@ -36,9 +36,13 @@ jobs:
     name: 'copy to gh-action-exp-2'
     runs-on: ubuntu-latest
     needs: check
-    if: ${{ needs.check.outputs.check_output != '' }}
+    if: ${{ needs.check.outputs.check_output != null }}
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Test Step
+        run: |
+          echo "Check output: ${{ needs.check.outputs.check_output }}"
       
       - name: Get target branch name
         id: get-target-branch-name
