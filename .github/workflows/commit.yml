@@ -13,6 +13,9 @@ jobs:
     name: 'check branch on gh-action-exp-2'
     runs-on: ubuntu-latest
     steps:
+      - name: Get current branch name
+        run: echo "Current branch is ${{ env.CURRENT_BRANCH }}"
+          
       - name: check branch with the same name on gh-action-exp-2
         id: check_branch
         run: |
