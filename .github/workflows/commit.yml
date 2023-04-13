@@ -42,9 +42,7 @@ jobs:
       
       - name: Test Step
         run: |
-          # Get the output of the build job
-          echo "Build output: ${{ jobs.check.outputs.check_output }}"
-          # Perform test steps
+          echo "Check output: ${{ jobs.check.outputs.check_output }}"
       
       - name: Get target branch name
         id: get-target-branch-name
