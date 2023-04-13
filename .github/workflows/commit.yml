@@ -48,5 +48,5 @@ jobs:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: 'gh-action-exp--${{ env.CURRENT_BRANCH }}'
+          target-branch: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
           target-directory: 'src/components/gh-action-exp'
