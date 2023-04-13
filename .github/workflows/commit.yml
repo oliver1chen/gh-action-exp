@@ -42,9 +42,10 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
+          TARGET_BRANCH: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
         with:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
+          target-branch: "${{ env.TARGET_BRANCH }}"
           target-directory: 'src/components/gh-action-exp'
