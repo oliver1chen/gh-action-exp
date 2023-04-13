@@ -2,8 +2,6 @@ on:
   push:
     branches-ignore:
       - master
-    paths:
-      - 'src/components/**'
       
 env:
   CURRENT_BRANCH: "$(basename ${{ github.ref }})"
@@ -44,10 +42,9 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_BRANCH_NAME: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
         with:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: "$TARGET_BRANCH_NAME"
+          target-branch: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
           target-directory: 'src/components/gh-action-exp'
