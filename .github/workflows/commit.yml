@@ -37,15 +37,20 @@ jobs:
     if: ${{ needs.check.outputs.check_output != '' }}
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Get target branch name
+        id: get-target-branch-name
+        run: |
+          branch_name="gh-action-exp--${{ env.CURRENT_BRANCH }}"
+          echo "::set-output name=branch_name::$branch_name"
 
       - name: Pushes gh-action-exp-2
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_BRANCH: "gh-action-exp--${{ env.CURRENT_BRANCH }}"
         with:
           source-directory: 'src/components'
           destination-github-username: 'oliver1chen'
           destination-repository-name: 'gh-action-exp-2'
-          target-branch: "${{ env.TARGET_BRANCH }}"
+          target-branch: "${{ steps.get-target-branch-name.outputs.branch_name  }}"
           target-directory: 'src/components/gh-action-exp'
