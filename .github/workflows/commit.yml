@@ -1,23 +1,40 @@
-# on:
-#   push:
-#     branches:
-#     - master
-#     paths:
-#       - 'src/components/**'
+on:
+  push:
+    branches-ignore:
+      - master
+    paths:
+      - 'src/components/**'
+      
+env:
+  CURRENT_BRANCH: ${{ github.head_ref }}
     
-# jobs:
+jobs:
+  check:
+    name: 'check branch on gh-action-exp-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: check branch with the same name on gh-action-exp-2
+        id: check_branch
+        run: |
+            echo "::set-output name=sha::$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/oliver1chen/gh-action-exp-2/branches/gh-action-exp--${{ env.CURRENT_BRANCH }}  | jq -r '.commit.sha')"
+            
+      - name: chech get sha output
+        run: |
+            echo "latest release: ${{ steps.check_branch.outputs.sha }}"
+    
+    
 #   copy:
 #     name: 'copy to gh-action-exp-2'
 #     runs-on: ubuntu-latest
 #     steps:
 #       - uses: actions/checkout@v3
-
-#       - name: Generate UUID
-#         id: generate-uuid
-#         uses: filipstefansson/uuid-action@v1
-        
-#       - name: Check UUID
-#         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
+      
+#       - name: Get current branch name
+#         run: echo "Current branch is ${{ env.CURRENT_BRANCH }}"
 
 #       - name: get sha of gh-action-exp-2
 #         id: get_sha
@@ -40,7 +57,7 @@
 #             -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
 #             -H "X-GitHub-Api-Version: 2022-11-28" \
 #             https://api.github.com/repos/oliver1chen/gh-action-exp-2/git/refs \
-#             -d '{"ref":"refs/heads/gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}","sha":"${{ steps.get_sha.outputs.sha }}" }'
+#             -d '{"ref":"refs/heads/gh-action-exp--${{ env.CURRENT_BRANCH }}","sha":"${{ steps.get_sha.outputs.sha }}" }'
 
 #       - name: Pushes gh-action-exp-2
 #         uses: cpina/github-action-push-to-another-repository@main
@@ -50,7 +67,7 @@
 #           source-directory: 'src/components'
 #           destination-github-username: 'oliver1chen'
 #           destination-repository-name: 'gh-action-exp-2'
-#           target-branch: 'gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}'
+#           target-branch: 'gh-action-exp--${{ env.CURRENT_BRANCH }}'
 #           target-directory: 'src/components/gh-action-exp'
 
 
@@ -62,4 +79,4 @@
 #             -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
 #             -H "X-GitHub-Api-Version: 2022-11-28" \
 #             https://api.github.com/repos/oliver1chen/gh-action-exp-2/pulls \
-#             -d '{"title":"Merge branch gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}","head":"gh-action-exp--${{ steps.generate-uuid.outputs.uuid }}","base":"master"}'
+#             -d '{"title":"Pull Request from gh-action-exp--${{ env.CURRENT_BRANCH }}","head":"gh-action-exp--${{ env.CURRENT_BRANCH }}","base":"master"}'
